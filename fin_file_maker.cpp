@@ -9,12 +9,13 @@ int main(){
     char type;
     bool valType, valExp;
     char filename[50];
-    FILE * point;
-    int fileSize;
+    int fileSize=0;
 
     std::cout << "enter .txt file name: "; 
     std:: cin >> filename;
-    point = make.open(filename);
+    make.open(filename);
+    
+    make << "\n";
 
     do{
         valType = true;
@@ -35,7 +36,9 @@ int main(){
                 case 'g':
                 case 'c':
                 case 'm':
-                case 'x': break;
+                case 'x': 
+                    valType=true;
+                    break;
                 default:
                 std::cout << "Invalid type try again\n";
                 valType=false;
@@ -43,7 +46,7 @@ int main(){
             }
             }while(!valType);
         if(type == 'x'){
-            std::cout << "File completed. Enjoy" << std::endl;
+            std::cout << "File completed. Goodluck" << std::endl;
             break;
         }
         do{
@@ -59,15 +62,18 @@ int main(){
                 std::cout << "Input positve, realistic expense: " << std::endl;
                 valExp = false;
             }
+            else
+                valExp=true;
         }while(!valExp);
 
-    make << exp << " ";
-    make << type << "\n";
+    make << exp << " " << type << "\n";
     fileSize+=1;
-
-    fseek(point, 0, SEEK_SET);
-    make << fileSize << "\n";
         }while(type !='x');
+    make.seekp(0, std::ios_base::beg);
+    make << "\n\n";
+    make.seekp(0,std::ios_base::beg);
+    make << fileSize << "\n";
+
 
     make.close();
 

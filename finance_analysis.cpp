@@ -13,17 +13,16 @@ short _BUDGET = 1250.00;
 int main(){
     
     char sel;
-    char fileName[50];
+    char filename[50];
     int size;
     double spent=0, totalSpent=0, food=0, rent=0, ent=0, clean=0, gas=0, misc=0, remBudg=0;
     std::ifstream get;
-    std::ofstream put;
     
     do{
     std::cout << "Which file?" << std::endl;
-    std::cin >> fileName;
+    std::cin >> filename;
     
-    get.open(fileName);
+    get.open(filename);
     
     if(!get)
         std::cout << "Input Valid File" << std::endl;
